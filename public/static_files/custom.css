@@ -337,3 +337,15 @@ body {
 	border-bottom-color: #30837c;
 }
 
+.main-title {
+	font-size: 71px; 
+	font-weight: 500;
+}
+.gradient-half-primary-v1 {
+	background-color: #22222E;
+}
+@media (min-width: 992px) {
+	.height-lg-100vh {
+	    height: 100vh;
+	}
+}
