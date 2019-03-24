@@ -1,79 +1,149 @@
-    <main id="content" class="bg-white">
-      <div class="d-flex align-items-center position-relative height-lg-100vh">
-        <div class="col-lg-9 col-xl-8 d-none d-lg-flex align-items-center gradient-half-primary-v1 height-lg-100vh px-0">
-          <div class="w-100 text-white" style="padding: 180px;">
-            <h2 class="mb-5 main-title">Put your creative energy to work, with Unkbox</h2>
-            <p class="lead">
-              Unkbox is a cloud storage clone built by <a href="http://kevinunkrich.com">Kevin Unkrich</a>
-            </p>
-          </div>
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 text-white">
+        <h5 class="my-0 mr-md-auto font-weight-normal">UnkBox</h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+          <a class="p-2" href="#">Settings</a>
+        </nav>
+        <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "btn btn-outline-primary") %>
+      </div>
+
+      <div class="breadcrumbs">
+        <span class="folderName">My Files</span>
+        <button type="button" class="btn btn-primary btn-sm btn-info-modal" data-toggle="modal" data-target="#exampleModal">
+          i
+        </button>
+      </div>
+      <div class="row data animated">
+        <div class="col-lg-3">
+          <a href="#" class="files">
+            <span class="icon file f-mp3">
+              .mp3
+            </span>
+            <span class="name">
+              track1.mp3
+            </span>
+            <span class="details">
+              200 KB
+            </span>
+          </a>
         </div>
+        <div class="col-lg-3">
+          <a href="#" class="files">
+            <span class="icon folder full">
+            </span>
+            <span class="name">
+              Archives
+            </span>
+            <span class="details">
+              3 items
+            </span>
+          </a>
+        </div>
+        <div class="col-lg-3">
+          <a href="#" class="files">
+            <span class="icon file f-mp3">
+              .mp3
+            </span>
+            <span class="name">
+              track1.mp3
+            </span>
+            <span class="details">
+              200 KB
+            </span>
+          </a>
+        </div>
+        <div class="col-lg-3">
+          <a href="#" class="files">
+            <span class="icon file f-doc">
+              .doc
+            </span>
+            <span class="name">
+              Geography.doc
+            </span>
+            <span class="details">
+              4 KB
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
 
-        <div class="container">
-          <div class="row no-gutters">
-            <div class="col-md-10 col-lg-10 col-xl-10 offset-md-1 offset-lg-1 offset-xl-1 space-3 space-lg-0">
-              <!-- Form -->
-			<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-			  <%= render "devise/shared/error_messages", resource: resource %>
-                <!-- Title -->
-                <div class="mb-4">
-                  <h1 class="h3 font-weight-normal mb-1">Sign up</h1>
-                  <p>or <a href="#">sign in to your account.</a></p>
-                </div>
-                <!-- End Title -->
+    <div class="container">
+      <div class="breadcrumbs">
+        <span class="folderName">Files Shared with Me</span>
+      </div>
+      <div class="row data animated">
+        <div class="col-lg-3">
+          <a href="#" class="files">
+            <span class="icon file f-mp3">
+              .mp3
+            </span>
+            <span class="name">
+              track1.mp3
+            </span>
+            <span class="details">
+              200 KB
+            </span>
+          </a>
+        </div>
+        <div class="col-lg-3">
+          <a href="#" class="files">
+            <span class="icon folder full">
+            </span>
+            <span class="name">
+              Archives
+            </span>
+            <span class="details">
+              3 items
+            </span>
+          </a>
+        </div>
+        <div class="col-lg-3">
+          <a href="#" class="files">
+            <span class="icon file f-mp3">
+              .mp3
+            </span>
+            <span class="name">
+              track1.mp3
+            </span>
+            <span class="details">
+              200 KB
+            </span>
+          </a>
+        </div>
+        <div class="col-lg-3">
+          <a href="#" class="files">
+            <span class="icon file f-doc">
+              .doc
+            </span>
+            <span class="name">
+              Geography.doc
+            </span>
+            <span class="details">
+              4 KB
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
 
-                <!-- Form Group -->
-                <div class="js-form-message form-group">
-			    	<%= f.text_field :first_name, autofocus: true, class: "form-control", placeholder: "First name" %>
-                </div>
-                <!-- End Form Group -->
-
-                <!-- Form Group -->
-                <div class="js-form-message form-group">
-			    	<%= f.text_field :last_name, autofocus: true, class: "form-control", placeholder: "Last name" %>
-                </div>
-                <!-- End Form Group -->
-
-                <!-- Form Group -->
-                <div class="js-form-message form-group">
-			    	<%= f.email_field :email, class: "form-control", placeholder: "Email" %>
-                </div>
-                <!-- End Form Group -->
-
-                <!-- Form Group -->
-                <div class="js-form-message form-group">
-				    <% if @minimum_password_length %>
-				    <em>(<%= @minimum_password_length %> characters minimum)</em>
-				    <% end %>
-				    <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Password" %>
-                </div>
-                <!-- End Form Group -->
-
-                <!-- Checkbox -->
-                <div class="js-form-message mb-3">
-                  <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
-                    <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox" required="" data-msg="Please accept our Terms and Conditions." data-error-class="u-has-error" data-success-class="u-has-success">
-                    <label class="custom-control-label" for="termsCheckbox">
-                      <small>
-                        I agree to the
-                        <a class="link-muted" href="../pages/terms.html">Terms and Conditions</a>
-                      </small>
-                    </label>
-                  </div>
-                </div>
-                <!-- End Checkbox -->
-
-                <!-- Button -->
-                <div class="row align-items-center mb-5">
-                  <div class="col-sm-12 text-right">
-		    		<%= f.submit "Get Started", class: "btn btn-primary transition-3d-hover", style: "width: 100%;" %>
-                  </div>
-                </div>
-                <!-- End Button -->
-			  <% end %>
-              <!-- End Form -->
-            </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
-    </main>
+    </div>
