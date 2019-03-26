@@ -1,0 +1,58 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+    <!-- Title -->
+    <div class="mb-4">
+      <h1 class="h3 font-weight-normal mb-1">Sign up</h1>
+      <p>or <a class="link" onClick="formSwitchTo('sign_in')">sign in to your account.</a></p>
+    </div>
+    <!-- End Title -->
+
+    <!-- Form Group -->
+    <div class="js-form-message form-group">
+    	<%= f.text_field :first_name, autofocus: true, class: "form-control", placeholder: "First name" %>
+    </div>
+    <!-- End Form Group -->
+
+    <!-- Form Group -->
+    <div class="js-form-message form-group">
+    	<%= f.text_field :last_name, autofocus: true, class: "form-control", placeholder: "Last name" %>
+    </div>
+    <!-- End Form Group -->
+
+    <!-- Form Group -->
+    <div class="js-form-message form-group">
+    	<%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+    </div>
+    <!-- End Form Group -->
+
+    <!-- Form Group -->
+    <div class="js-form-message form-group">
+	    <% if @minimum_password_length %>
+	    <em>(<%= @minimum_password_length %> characters minimum)</em>
+	    <% end %>
+	    <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Password" %>
+    </div>
+    <!-- End Form Group -->
+
+    <!-- Checkbox -->
+    <div class="js-form-message mb-3">
+      <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
+        <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox" required="" data-msg="Please accept our Terms and Conditions." data-error-class="u-has-error" data-success-class="u-has-success">
+        <label class="custom-control-label" for="termsCheckbox">
+          <small>
+            I agree to the
+            <a class="link-muted" href="../pages/terms.html">Terms and Conditions</a>
+          </small>
+        </label>
+      </div>
+    </div>
+    <!-- End Checkbox -->
+
+    <!-- Button -->
+    <div class="row align-items-center mb-5">
+      <div class="col-sm-12 text-right">
+		<%= f.submit "Get Started", class: "btn btn-primary transition-3d-hover", style: "width: 100%;" %>
+      </div>
+    </div>
+    <!-- End Button -->
+  <% end %>

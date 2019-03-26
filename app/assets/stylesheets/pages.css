@@ -28,6 +28,11 @@ body {
     margin-top: 50px;
 }
 
+.link {
+	color: #007bff !important;
+	cursor: pointer;
+}
+
 /*-------------------------
 	Breadcrumps
 -------------------------*/
