@@ -1,0 +1,9 @@
+        <% tempPath = "" %>
+        <% url_for(:only_path => true).split("/")[1..-2].each do |path| %>
+        <% tempPath += ("/" + path) %>
+        <a href="<%= tempPath %>">
+          <span class="folderName"><%= path.gsub("%20", " ") %></span>
+        </a> 
+        <span class="arrow">→</span>
+        <% end %> 
+        <span class="folderName"><%= @subfolder_parent.name %></span>

@@ -8,8 +8,13 @@
       </div>
 
       <div class="breadcrumbs">
-        <span class="folderName">My Files</span>
-        <button type="button" class="btn btn-primary btn-sm btn-upload-modal" data-toggle="modal" data-target="#uploadModal">&#x2191;</button>
+        <div class="my-files">
+          <h3>
+            My Files
+            <button type="button" class="btn btn-primary btn-sm btn-upload-modal" data-toggle="modal" data-target="#uploadModal">i</button>
+          </h3>
+        </div>
+        <%= render 'breadcrumbs' %>
       </div>
       <div class="row data animated">
         <% @folders.each do |folder| %>
@@ -59,10 +64,10 @@
     <!-- Upload Doc Modal -->
     <div
       class="modal fade upload-modal"
-      id="exampleModal"
+      id="uploadModal"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="uploadModalLabel"
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -101,7 +106,7 @@
         <div class="modal-content">
           <%= form_for @new_folder, url: {action: "create", controller: "folders"} do |f| %>
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Create New Folder</h5>
+              <h5 class="modal-title" id="createNewModalLabel">Create New Folder</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

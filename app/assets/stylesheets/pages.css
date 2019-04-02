@@ -40,8 +40,8 @@ body {
 
 .breadcrumbs {
 	color: #ffffff;
-	margin-left:20px;
-	font-size: 24px;
+	margin-left:10px;
+	font-size: 20px;
 	font-weight: 700;
 	line-height: 35px;
 }
@@ -49,6 +49,7 @@ body {
 .breadcrumbs a:link, .breadcrumbs a:visited {
 	color: #ffffff;
 	text-decoration: none;
+	display: inline-block;
 }
 
 .breadcrumbs a:hover {
