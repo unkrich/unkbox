@@ -9,9 +9,7 @@
 
       <div class="breadcrumbs">
         <span class="folderName">My Files</span>
-        <button type="button" class="btn btn-primary btn-sm btn-info-modal" data-toggle="modal" data-target="#exampleModal">
-          i
-        </button>
+        <button type="button" class="btn btn-primary btn-sm btn-upload-modal" data-toggle="modal" data-target="#uploadModal">&#x2191;</button>
       </div>
       <div class="row data animated">
         <% @folders.each do |folder| %>
@@ -23,52 +21,26 @@
                 <%= folder.name %>
               </span>
               <span class="details">
-                <%= folder.children.count %>
+                <%= folder.children.count + folder.files.count %> Items
               </span>
             <% end %>
           </div>
         <% end %>
-      <!--
+        <% @files.each do |file| %>
         <div class="col-lg-3">
           <a href="#" class="files">
-            <span class="icon file f-mp3">
-              .mp3
+            <span class="icon file f-<%= file.blob.filename.extension %>">
+              .<%= file.blob.filename.extension %>
             </span>
             <span class="name">
-              track1.mp3
+              <%= file.blob.filename %>
             </span>
             <span class="details">
-              200 KB
+              <%= file.blob.byte_size / 1000 %> KB
             </span>
           </a>
         </div>
-        <div class="col-lg-3">
-          <a href="#" class="files">
-            <span class="icon file f-mp3">
-              .mp3
-            </span>
-            <span class="name">
-              track1.mp3
-            </span>
-            <span class="details">
-              200 KB
-            </span>
-          </a>
-        </div>
-        <div class="col-lg-3">
-          <a href="#" class="files">
-            <span class="icon file f-doc">
-              .doc
-            </span>
-            <span class="name">
-              Geography.doc
-            </span>
-            <span class="details">
-              4 KB
-            </span>
-          </a>
-        </div>
-      -->
+        <% end %>
         <div class="col-lg-3">
           <button class="files create-new" data-toggle="modal" data-target="#createNewModal">
             <span class="icon folder full">
@@ -84,91 +56,50 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="breadcrumbs">
-        <span class="folderName">Files Shared with Me</span>
-      </div>
-      <div class="row data animated">
-        <div class="col-lg-3">
-          <a href="#" class="files">
-            <span class="icon file f-mp3">
-              .mp3
-            </span>
-            <span class="name">
-              track1.mp3
-            </span>
-            <span class="details">
-              200 KB
-            </span>
-          </a>
-        </div>
-        <div class="col-lg-3">
-          <a href="#" class="files">
-            <span class="icon folder full">
-            </span>
-            <span class="name">
-              Archives
-            </span>
-            <span class="details">
-              3 items
-            </span>
-          </a>
-        </div>
-        <div class="col-lg-3">
-          <a href="#" class="files">
-            <span class="icon file f-mp3">
-              .mp3
-            </span>
-            <span class="name">
-              track1.mp3
-            </span>
-            <span class="details">
-              200 KB
-            </span>
-          </a>
-        </div>
-        <div class="col-lg-3">
-          <a href="#" class="files">
-            <span class="icon file f-doc">
-              .doc
-            </span>
-            <span class="name">
-              Geography.doc
-            </span>
-            <span class="details">
-              4 KB
-            </span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Upload Doc Modal -->
+    <div
+      class="modal fade upload-modal"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+    >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
+          <%= form_for @subfolder_parent, html: { class: 'dropzone' } do |f| %>
+
+            <div class="modal-header">
+              <h4 class="modal-title">
+                Upload Files
+              </h4>
+            </div>
+
+            <div class="modal-body">
+              <div class="row">
+                <!--  Dropzone -->
+                <div class="col-sm-12">
+                  <%= f.file_field :files, multiple: true, input_html: { class: 'hidden' } %>
+                </div> <!-- .dropzone -->
+              </div>
+            </div> <!-- .modal-body -->
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">
+                Cancel
+              </button>
+              <%= f.submit 'Upload', class: 'btn btn-primary' %>
+            </div> <!-- .modal-footer -->
+          <% end %>
+        </div> <!-- .modal-content -->
+      </div> <!-- .modal-dialog -->
+    </div> <!-- #upload-modal -->
+
 
     <!-- Create new folder modal -->
     <div class="modal fade" id="createNewModal" tabindex="-1" role="dialog" aria-labelledby="createNewModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <%= form_for @folder, url: {action: "create", controller: "folders"} do |f| %>
+          <%= form_for @new_folder, url: {action: "create", controller: "folders"} do |f| %>
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Create New Folder</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -177,7 +108,7 @@
             </div>
             <div class="modal-body">
               <%= f.text_field :name, placeholder: "Name of Folder", class: "form-control" %>
-              <%= f.hidden_field :parent_id, value: @subfolder_parent %>
+              <%= f.hidden_field :parent_id, value: @subfolder_parent.id %>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

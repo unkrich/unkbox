@@ -14,18 +14,23 @@ class PagesController < ApplicationController
       parameters = params[:path].split("/").reverse
       @subfolder_parent, @folders = verify_path(parameters)
     else # '/home'
+      @subfolder_parent = current_user.home
       @folders = Folder.roots(current_user)
     end
 
-  	# To create a new folder in the directory
-  	@folder = current_user.folders.new
+    @files = @subfolder_parent.files if @subfolder_parent
+    @files = [] if !@files
+
+    # To create a new folder in the directory
+  	@new_folder = current_user.folders.new
+
   end
 
   private
 
   def verify_path(parameters)
       temp_folder = current_user.folders.find_by_name(parameters.first)
-      parent = temp_folder.id
+      parent = temp_folder
       folders = temp_folder.children if temp_folder
 
       # Trace path
@@ -39,7 +44,7 @@ class PagesController < ApplicationController
       end
 
       # Check if last folder in path is root folder - as should be
-      if temp_folder == nil || temp_folder.parent != nil
+      if temp_folder == nil || temp_folder.parent != current_user.home
         flash[:error] = "Folder path not found."
         redirect_to '/home'
       end

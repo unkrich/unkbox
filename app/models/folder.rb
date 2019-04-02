@@ -5,8 +5,10 @@ class Folder < ApplicationRecord
 	  		  optional: true, 
 	  		  class_name: 'Folder'
 
-  def self.roots(current_user)
-  	Folder.where(parent_id: nil, user: current_user)
+  has_many_attached :files
+
+  def self.roots(user)
+  	Folder.where(parent_id: user.home, user: user).order("name ASC")
   end
 
   def children
