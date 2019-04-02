@@ -12,6 +12,6 @@ class Folder < ApplicationRecord
   end
 
   def children
-  	Folder.where(parent_id: self.id, user_id: self.user_id)
+  	Folder.where(parent_id: self.id, user_id: self.user_id).order("name ASC")
   end
 end

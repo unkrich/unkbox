@@ -49,6 +49,6 @@ class PagesController < ApplicationController
         redirect_to '/home'
       end
 
-      return parent, folders
+      return parent, folders.order("name ASC")
   end
 end
