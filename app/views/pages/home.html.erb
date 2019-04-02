@@ -32,19 +32,19 @@
           </div>
         <% end %>
         <% @files.each do |file| %>
-        <div class="col-lg-3">
-          <a href="#" class="files">
-            <span class="icon file f-<%= file.blob.filename.extension %>">
-              .<%= file.blob.filename.extension %>
-            </span>
-            <span class="name">
-              <%= file.blob.filename %>
-            </span>
-            <span class="details">
-              <%= file.blob.byte_size / 1000 %> KB
-            </span>
-          </a>
-        </div>
+          <div class="col-lg-3">
+            <a href="<%= rails_blob_path(file, disposition: :attachment) %>" class="files">
+              <span class="icon file f-<%= file.blob.filename.extension %>">
+                .<%= file.blob.filename.extension %>
+              </span>
+              <span class="name">
+                <%= file.blob.filename %>
+              </span>
+              <span class="details">
+                <%= file.blob.byte_size / 1000 %> KB
+              </span>
+            </a>
+          </div>
         <% end %>
         <div class="col-lg-3">
           <button class="files create-new" data-toggle="modal" data-target="#createNewModal">
