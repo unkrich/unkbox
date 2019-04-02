@@ -29,6 +29,7 @@
                 <%= folder.children.count + folder.files.count %> Items
               </span>
             <% end %>
+            <%= link_to 'DEL', folder, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete-button" %>
           </div>
         <% end %>
         <% @files.each do |file| %>
@@ -44,6 +45,7 @@
                 <%= file.blob.byte_size / 1000 %> KB
               </span>
             </a>
+            <a href="/folders/<%= @subfolder_parent.id %>/files/<%= file.id %>" class="delete-button">DEL</a>
           </div>
         <% end %>
         <div class="col-lg-3">

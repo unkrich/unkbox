@@ -360,6 +360,22 @@ body {
 	border-bottom-color: #30837c;
 }
 
+.delete-button {
+    position: absolute;
+    right: 15px;
+    color: grey;
+    bottom: 20px;
+    z-index: 1;
+}
+.delete-button:hover {
+	color: lightgrey;
+	text-decoration:none;
+}
+@media (max-width: 992px) {
+	.delete-button {
+	    right: 30px;
+	}
+}
 
 .main-title {
 	font-size: 71px; 
