@@ -1,24 +1,7 @@
-# README
+Temporary note: The demo at unkbox.com is unavailable.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# unkbox.com
 
-Things you may want to cover:
+The purpose of this application is to allow a user to easily upload/download/store files on unkbox.com using Rails, AWS S3, Heroku, Active Storage, and a few other technologies. 
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+It is not meant to be an end user product, but simply an afternoon project proof-of-concept.
