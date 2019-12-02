@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: [:home]
 
-
   def landing
   	if user_signed_in?
   		redirect_to '/home'
@@ -9,7 +8,8 @@ class PagesController < ApplicationController
   end
 
   def home
-
+    ActiveStorage::Current.host = "localhost:3000"
+    
     if params[:path] # '/home/*'
       parameters = params[:path].split("/").reverse
       @subfolder_parent, @folders = verify_path(parameters)
